@@ -1,0 +1,161 @@
+
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/funghetto/Quote-Reminder">
+    <img src="Icons/icon.png" alt="Logo" width="80" height="80">
+  </a>
+
+<h3 align="center">Quote Reminder</h3>
+
+  <p align="center">
+    project_description
+    <br />
+    <a href="https://github.com/funghetto/Quote-Reminder">View Demo</a>
+    ·
+    <a href="https://github.com/funghetto/Quote-Reminder/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/funghetto/Quote-Reminder/issues">Request Feature</a>
+  </p>
+</div>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>       
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+      <ul>
+        <a href="#features">Features</a>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+Quote Reminder is a free and open source application, licensed under the GPLv3 licence to programmatically display user inserted quotes in the form of popups. It is based on Python, Qt 6, qdarktheme, pygame and tendo.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FEATURES -->
+## Features
+
+* Possibility to change the quote position
+* Gaming mode
+* Quote sound
+* Managing quote order and randomizing it
+* Changing time between quotes
+* Systray
+* Autostart on system boot (only for the Windows binary)
+* Dark Mode
+* Search bar to find and edit quotes
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Built With
+
+* [![Python][python3]][python3-url]
+* [![Qt6][qt6]][qt6-url]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+You can download the Windows binary or clone the repo and start the program with Python.
+
+### Prerequisites for running from source
+
+Install Qt6 and Python 3
+
+Install the pip requirements:
+*
+  ```sh
+  pip install Pyside6 qdarktheme tendo pygame
+  ```
+
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/funghetto/Quote-Reminder.git
+   ```
+2. Install PIP packages
+   ```sh
+   pip install Pyside6 qdarktheme tendo pygame
+   ```
+3. Start the program
+   ```sh
+   python main.py
+   ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+## License
+
+Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Michele Renosto - composizion3@hotmail.com
+
+Project Link: [https://github.com/funghetto/Quote-Reminder](https://github.com/funghetto/Quote-Reminder)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* Thanks to JackEvo for the idea that inspired this project.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+[issues-url]: https://github.com/funghetto/Quote-Reminder/issues
+[license-url]: https://github.com/funghetto/Quote-Reminder/blob/master/LICENSE.txt
+[product-screenshot]: images/screenshot.png
+[python3]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
+[python3-url]: https://www.python.org/
+[qt6]: https://img.shields.io/badge/Qt-6
+[qt6-url]: https://www.qt.io/product/qt6
