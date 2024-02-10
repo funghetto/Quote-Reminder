@@ -1,0 +1,15 @@
+<RCC>
+  <qresource>
+    <file>Icons/icon.png</file>
+    <file>Icons/favicon.ico</file>
+    <file>Icons/edit.png</file>
+    <file>Fonts/BebasNeue-Regular.ttf</file>
+    <file>Icons/closeicon.png</file>
+    <file>Icons/keyboard_arrow_down_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>Icons/expand_less_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>Icons/Paypal.png</file>
+    <file>Icons/baseline_search_black_20.ico</file>
+    <file>Icons/remove_FILL0_wght400_GRAD0_opsz24.png</file>
+    <file>Icons/add_FILL0_wght400_GRAD0_opsz24.png</file>
+  </qresource>
+</RCC>
