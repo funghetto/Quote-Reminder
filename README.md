@@ -10,7 +10,7 @@
 <h3 align="center">Quote Reminder</h3>
 
   <p align="center">
-    project_description
+    GUI to periodically show reminders and quotes.
     <br />
     <a href="https://github.com/funghetto/Quote-Reminder/issues">Report Bug</a>
     ·
@@ -36,7 +36,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#prerequisites for running from source">Prerequisites for running from source</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -52,7 +52,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="show.png" alt="Logo" width="1358" height="873">
+<p align="center"><img src="show.png" alt="Logo" width="744" height="480"></p>
 
 Quote Reminder is a free and open source application, licensed under the GPLv3 licence to programmatically display user inserted quotes in the form of popups. It is based on Python, Qt 6, qdarktheme, pygame and tendo.
 
@@ -64,6 +64,7 @@ Quote Reminder is a free and open source application, licensed under the GPLv3 l
 * Possibility to change the quote position
 * Gaming mode
 * Quote sound
+* Fading Quote animations
 * Managing quote order and randomizing it
 * Changing time between quotes
 * Systray
