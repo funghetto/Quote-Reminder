@@ -12,8 +12,6 @@
   <p align="center">
     project_description
     <br />
-    <a href="https://github.com/funghetto/Quote-Reminder">View Demo</a>
-    ·
     <a href="https://github.com/funghetto/Quote-Reminder/issues">Report Bug</a>
     ·
     <a href="https://github.com/funghetto/Quote-Reminder/issues">Request Feature</a>
@@ -53,6 +51,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+
+<img src="show.png" alt="Logo" width="1358" height="873">
 
 Quote Reminder is a free and open source application, licensed under the GPLv3 licence to programmatically display user inserted quotes in the form of popups. It is based on Python, Qt 6, qdarktheme, pygame and tendo.
 
