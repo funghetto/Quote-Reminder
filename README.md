@@ -40,7 +40,6 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -52,7 +51,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<p align="center"><img src="show.png" alt="Logo" width="744" height="480"></p>
+<p align="center"><img src="show2.png" alt="Logo" width="708" height="512"></p>
 
 Quote Reminder is a free and open source application, licensed under the GPLv3 licence to programmatically display user inserted quotes in the form of popups. It is based on Python, Qt 6, qdarktheme, pygame and tendo.
 
@@ -92,13 +91,6 @@ You can download the Windows binary or clone the repo and start the program with
 
 Install Qt6 and Python 3
 
-Install the pip requirements:
-*
-  ```sh
-  pip install Pyside6 qdarktheme tendo pygame
-  ```
-
-
 ### Installation
 
 1. Clone the repo
@@ -107,22 +99,18 @@ Install the pip requirements:
    ```
 2. Install PIP packages
    ```sh
-   pip install Pyside6 qdarktheme tendo pygame
+   pip install Pyside6 pyqtdarktheme tendo pygame
    ```
-3. Start the program
+3. Change folder
+   ```sh
+   cd Quote-Reminder
+   ```
+4. Start the program
    ```sh
    python main.py
    ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
@@ -135,8 +123,6 @@ Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-
-Michele Renosto - composizion3@hotmail.com
 
 Project Link: [https://github.com/funghetto/Quote-Reminder](https://github.com/funghetto/Quote-Reminder)
 
