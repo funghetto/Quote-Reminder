@@ -85,7 +85,7 @@ Quote Reminder is a free and open source application, licensed under the GPLv3 l
 <!-- GETTING STARTED -->
 ## Getting Started
 
-You can download the Windows binary or clone the repo and start the program with Python.
+You can [download the Windows binary](https://github.com/funghetto/Quote-Reminder/releases/download/Main/QuoteReminder-WinBinary.zip) or clone the repo and start the program with Python.
 
 ### Prerequisites for running from source
 
