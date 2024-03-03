@@ -112,8 +112,6 @@ Install Qt6 and Python 3
 
 Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTACT -->
