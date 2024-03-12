@@ -26,6 +26,7 @@ if platform.system() == "Windows":
     import winreg
 from random import randint
 import pygame
+from pathlib import Path
 
 
 class CustomItemDelegate(QStyledItemDelegate):
@@ -86,7 +87,9 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        os.chdir(os.path.dirname(os.path.abspath(__file__)))
+        self.ui.abspath = Path(__file__).resolve()
+        self.ui.fileparentdir = Path(self.ui.abspath).parent
+        os.chdir(self.ui.fileparentdir)
         self.setWindowFlag(Qt.FramelessWindowHint)
         # Add the icon
         self.icon = QIcon()
@@ -175,23 +178,25 @@ class MainWindow(QMainWindow):
                         "darktheme": 0,
                         "disablesound": 0
             }
-        self.file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Quotes\\list.json")
-        self.file_path2 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Prefs\\tmp.json")
-        self.sound_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Sound\\new-positive-notice.wav")
-        self.convert_path_for_open()
+        # self.quotes_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Quotes\\list.json")
+        self.quotes_path = self.ui.fileparentdir / "Quotes" / "list.json"
+        # self.prefs_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Prefs\\tmp.json")
+        self.prefs_path = self.ui.fileparentdir / "Prefs" / "tmp.json"
+        # self.sound_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Sound\\new-positive-notice.wav")
+        self.sound_path = self.ui.fileparentdir / "Sound" / "new-positive-notice.wav"
         # Create empty jsons list if the json file doesn't exist
-        if not os.path.exists(self.file_path):
-            with open(self.file_path, 'w') as file:
+        if not self.quotes_path.exists():
+            with open(self.quotes_path, 'w') as file:
                 json.dump(empty_list, file)
-        if not os.path.exists(self.file_path2):
-            with open(self.file_path2, 'w') as file:
+        if not self.prefs_path.exists():
+            with open(self.prefs_path, 'w') as file:
                 json.dump(empty_tmp, file)
         
         # Open the json files and load them
-        with open(self.file_path, 'r') as file:
+        with open(self.quotes_path, 'r') as file:
             self.array_of_quotes = json.load(file)   
 
-        with open(self.file_path2, 'r') as file:
+        with open(self.prefs_path, 'r') as file:
             self.tmp_status = json.load(file)     
 
 
@@ -216,7 +221,7 @@ class MainWindow(QMainWindow):
 
         # Create tray icon
         self.ui.tray_icon = QSystemTrayIcon(self)
-        self.ui.tray_icon.setIcon(QIcon(os.path.abspath("Icons/icon.png")))
+        self.ui.tray_icon.setIcon(QIcon(str(Path("Icons/icon.png").resolve())))
 
         # Open program if tray double clicked
         self.ui.tray_icon.activated.connect(self.tray_icon_activated)
@@ -250,6 +255,10 @@ class MainWindow(QMainWindow):
         self.options_dialog.ui.PositionComboBox.insertItems(0, combo_box_list)
         # Create counter to store which quotes have been displayed
         self.quote_counter = 0
+        # Create flag to check if at least one quote has been displayed
+        self.showedquote = 0
+        # Create flag to store last random quote num displayed
+        self.lastrandomnum = 9999
         # Create a timer
         self.timer = QTimer(self)
         # Make it show notification everytime it ends
@@ -443,7 +452,7 @@ class MainWindow(QMainWindow):
             #2d3b53 pressed button
             
             if self.options_dialog.ui.DarkThemeCheckBox.isChecked():
-                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(os.path.abspath("Icons/closeicondark.png")))
+                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(str(Path("Icons/closeicondark.png").resolve())))
                 self.quote_dialog.ui.CloseQuoteButton.setStyleSheet("""
                 QPushButton {
                     background-color: #202124;
@@ -467,7 +476,7 @@ class MainWindow(QMainWindow):
                         background-color: lightblue;  /* Change this to your desired click color */
                     }
                 """)
-                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(os.path.abspath("Icons/closeicon.png")))
+                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(str(Path("Icons/closeicon.png").resolve())))
             self.quote_dialog.ui.QuoteText.setFont(self.custom_font_text_q)
             self.quote_dialog.ui.QuoteText.setText(text)   
             self.quote_dialog.ui.CloseQuoteButton.clicked.connect(self.close_quote_even_centered)
@@ -858,7 +867,17 @@ class MainWindow(QMainWindow):
 
     def show_reminder(self):
         if self.options_dialog.ui.RandomCheckBox.isChecked():
-            self.open_quote(self.array_of_quotes[randint(0, len(self.array_of_quotes) - 1)])
+            if self.showedquote == 0:
+                self.lastrandomnum = randint(0, len(self.array_of_quotes) - 1)
+                self.open_quote(self.array_of_quotes[self.lastrandomnum])
+                self.showedquote = 1
+            else:
+                new_rnd_num = randint(0, len(self.array_of_quotes) - 1)
+                while new_rnd_num == self.lastrandomnum:
+                    new_rnd_num = randint(0, len(self.array_of_quotes) - 1)
+                self.open_quote(self.array_of_quotes[new_rnd_num])
+                self.lastrandomnum = new_rnd_num
+
         else:
             self.open_quote(self.array_of_quotes[self.quote_counter])
             self.quote_counter += 1
@@ -895,7 +914,7 @@ class MainWindow(QMainWindow):
         python_executable = sys.executable
 
         # Get the full path of the Python program
-        script_path = os.path.abspath(__file__)
+        script_path = str(Path.resolve(__file__))
 
         # Construct the full command to run the program
         script_command = f'"{python_executable}" "{script_path}"'
@@ -934,10 +953,10 @@ class MainWindow(QMainWindow):
     def hide_window(self):
         self.hide()
 
-    def convert_path_for_open(self):
+    """def convert_path_for_open(self):
         # Convert backslashes to forward slashes (Windows-specific)
-        self.file_path = self.file_path.replace('\\', '/')
-        self.file_path2 = self.file_path2.replace('\\', '/')
+        self.quotes_path = self.quotes_path.replace('\\', '/')
+        self.prefs_path = self.prefs_path.replace('\\', '/')"""
 
     def closeEvent(self, event):
         # Store model to json for future usage
@@ -946,7 +965,7 @@ class MainWindow(QMainWindow):
 
     def save_changes_to_quotes(self):
         # Store model to json for future usage
-        with open(self.file_path, 'w') as file:
+        with open(self.quotes_path, 'w') as file:
             json.dump(self.model.stringList(), file)
     
     def save_changes_to_settings(self):
@@ -961,7 +980,7 @@ class MainWindow(QMainWindow):
         self.tmp_status["darktheme"] = int(self.options_dialog.ui.DarkThemeCheckBox.isChecked())
         self.tmp_status["position"] = int(self.options_dialog.ui.PositionComboBox.currentIndex())
         self.tmp_status["disablesound"] = int(self.options_dialog.ui.DisableSoundCheckBox.isChecked())
-        with open(self.file_path2, 'w') as file:
+        with open(self.prefs_path, 'w') as file:
             test = json.dump(self.tmp_status, file)
 
     def play_quote_sound(self):
@@ -1036,7 +1055,7 @@ class MainWindow(QMainWindow):
             self.ui.DownButton.setIcon(QIcon("Icons/light_arrow_down.png"))
             self.ui.EditButton.setIcon(QIcon("Icons/light_edit.png"))
             try:
-                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(os.path.abspath("Icons/closeicondark.png")))
+                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(str(Path("Icons/closeicondark.png").resolve())))
                 self.quote_dialog.ui.CloseQuoteButton.setStyleSheet("""
                 QPushButton {
                     background-color: #202124;
@@ -1173,7 +1192,7 @@ class MainWindow(QMainWindow):
                 }
             """)
             try:
-                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(os.path.abspath("Icons/closeicon.png")))
+                self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(str(Path("Icons/closeicon.png").resolve())))
             except AttributeError:
                 pass
         self.save_changes_to_settings()      
