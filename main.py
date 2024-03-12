@@ -301,6 +301,7 @@ class MainWindow(QMainWindow):
             self.ui.UpButton.setIcon(QIcon("Icons/light_arrow_up.png"))
             self.ui.DownButton.setIcon(QIcon("Icons/light_arrow_down.png"))
             self.ui.EditButton.setIcon(QIcon("Icons/light_edit.png"))
+            self.ui.CloseButton.setIcon(QIcon("Icons/closeicondark.png"))
 
         # Set stylesheet for options dialog
         if self.options_dialog.ui.DarkThemeCheckBox.isChecked():
@@ -872,11 +873,14 @@ class MainWindow(QMainWindow):
                 self.open_quote(self.array_of_quotes[self.lastrandomnum])
                 self.showedquote = 1
             else:
-                new_rnd_num = randint(0, len(self.array_of_quotes) - 1)
-                while new_rnd_num == self.lastrandomnum:
+                if len(self.array_of_quotes) > 1:
                     new_rnd_num = randint(0, len(self.array_of_quotes) - 1)
-                self.open_quote(self.array_of_quotes[new_rnd_num])
-                self.lastrandomnum = new_rnd_num
+                    while new_rnd_num == self.lastrandomnum:
+                        new_rnd_num = randint(0, len(self.array_of_quotes) - 1)
+                    self.open_quote(self.array_of_quotes[new_rnd_num])
+                    self.lastrandomnum = new_rnd_num
+                else:
+                    self.open_quote(self.array_of_quotes[0])
 
         else:
             self.open_quote(self.array_of_quotes[self.quote_counter])
@@ -1113,6 +1117,18 @@ class MainWindow(QMainWindow):
                     background-color: #2d3b53;  /* Change this to your desired click color */
                 }
                 """)
+            self.ui.CloseButton.setStyleSheet("""
+                QPushButton {
+                    background-color: #202124;
+                }
+                QPushButton:hover {
+                    background-color: #272e3b;  /* Change this to your desired hover color */
+                }
+                QPushButton:pressed {
+                    background-color: #2d3b53;  /* Change this to your desired click color */
+                }
+                """)
+            self.ui.CloseButton.setIcon(QIcon(str(Path("Icons/closeicondark.png").resolve())))
         else:
             qdarktheme.setup_theme("light")
             self.options_dialog.ui.CloseButton_2.setStyleSheet("""
@@ -1195,6 +1211,18 @@ class MainWindow(QMainWindow):
                 self.quote_dialog.ui.CloseQuoteButton.setIcon(QIcon(str(Path("Icons/closeicon.png").resolve())))
             except AttributeError:
                 pass
+            self.ui.CloseButton.setStyleSheet("""
+                QPushButton {
+                    background-color: #f8f9fa;
+                }
+                QPushButton:hover {
+                    background-color: #e2ecf7;  /* Change this to your desired hover color */
+                }
+                QPushButton:pressed {
+                    background-color: lightblue;  /* Change this to your desired click color */
+                }
+            """)
+            self.ui.CloseButton.setIcon(QIcon("Icons/closeicon.png"))
         self.save_changes_to_settings()      
 
     def open_github(self):
