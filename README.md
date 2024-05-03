@@ -53,7 +53,7 @@
 
 <p align="center"><img src="show2.png" alt="Logo" width="708" height="512"></p>
 
-Quote Reminder is a free and open source application, licensed under the GPLv3 licence to programmatically display user inserted quotes in the form of popups. It is based on Python, Qt 6, qdarktheme, pygame and tendo.
+Quote Reminder is a free and open source application, licensed under the GPLv3 licence to programmatically display user inserted quotes in the form of popups. It is based on Python, Qt 6, qdarktheme, pygame, PyQt-Frameless-Window and tendo.
 
 <!-- FEATURES -->
 ## Features
